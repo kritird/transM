@@ -1,0 +1,118 @@
+
+    <div class="container" ng-controller="DishDetailController">
+
+      <!-- Dish Detail Display with comments -->
+        <div class="row row-content" style="border-bottom:0px;">
+            <div class="col-xs-12" ng-if="!showDish">
+              <h3>{{message}}</h3>
+            </div>
+            <div class="col-xs-12" ng-if="showDish">          
+              <button class="btn btn-xs btn-primary pull-right"
+                      type="button" ui-sref="app.menu">
+                      Back to Menu
+              </button>
+
+              <ul class="media-list fade in active">
+                 <li class="media">
+                     <div class="media-left media-middle">
+                         <a href="#">
+                         <img class="media-object img-thumbnail"
+                          ng-src={{dish.image}} alt="Uthappizza">
+                         </a>
+                     </div>
+                     <div class="media-body">
+                         <h2 class="media-heading">{{dish.name}}
+                          <span class="label label-danger">{{dish.label}}</span>
+                          <span class="badge">{{dish.price | currency}}</span></h2>
+                         <p>{{dish.description}}</p>
+                     </div>
+                 </li>
+              </ul>
+            </div>
+            <div class="col-xs-9 col-xs-offset-1">
+                <div class="col-sm-4">
+                   <h3 style="margin-top:0px">Customer comments</h3>
+                </div>
+                <div class="col-sm-8">
+                  <p>Sort by : <input type="text" ng-model="order">
+                  </p>
+                </div>
+                <div class="col-xs-12">
+                  <ul class="list-unstyled" ng-repeat = "dishComments in dish.comments | orderBy : order">
+                      <blockquote>
+                        <h4>{{dishComments.rating}} Stars</h4>
+                        <p>{{dishComments.comment}}</p>
+                        <footer>{{dishComments.author}}, {{dishComments.date | date:'medium'}}</footer>
+                      </blockquote>
+                  </ul>
+                </div>
+            </div>
+        </div>
+        <!-- end of Dish Detail-->
+
+        <!-- Dish Comment Form controller-->
+        <div class="col-xs-9 col-xs-offset-1" ng-controller="DishCommentController">
+
+            <!-- Comment Preview -->
+            <div class="col-xs-12">
+              <ul class="list-unstyled" ng-show=!commentForm.$pristine>
+                <blockquote>
+                  <h4>{{comments.rating}} Stars</h4>
+                  <p>{{comments.comment}}</p>
+                  <footer>{{comments.author}}, {{comments.date | date:'medium'}}</footer>
+                </blockquote>
+              </ul>
+            </div>
+
+            <!-- Dish Comment Form -->
+            <form class="form-horizontal" name="commentForm" ng-submit="submitComment()" novalidate>
+
+              <div class="form-group" ng-class="{ 'has-error' : commentForm.author.$error.required && !commentForm.author.$pristine }">
+                  <label for="author" class="col-sm-2 control-label">Your Name</label>
+                  <div class="col-sm-10">
+                      <input type="text" class="form-control" ng-model="comments.author" required id="author" name="author" placeholder="Enter Your Name">
+                      <span ng-show="commentForm.author.$error.required && !commentForm.author.$pristine" class="help-block">Your name is required.</span>
+                  </div>
+              </div>
+
+
+              <div class="form-group">
+                  <label for="rating" class="col-sm-2 control-label">Number of Stars</label>
+                  <div class="radio col-sm-10">
+                    <label class="radio-inline">
+                      <input type="radio" name="rating" ng-model="comments.rating" id="star1" value=1> 1
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="rating" ng-model="comments.rating" id="star2" value=2> 2
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="rating" ng-model="comments.rating" id="star3" value=3> 3
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="rating" ng-model="comments.rating" id="star4" value=4> 4
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="rating" ng-model="comments.rating" id="star5" value=5> 5
+                    </label>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <label for="feedback" class="col-sm-2 control-label">Your Comments</label>
+                  <div class="col-sm-10">
+                      <textarea class="form-control" ng-model="comments.comment" id="comment" name="comment" rows="12"></textarea>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" ng-disabled="commentForm.$invalid" class="btn btn-primary">Submit  Comment</button>
+                  </div>
+              </div>
+
+            </form>
+        </div>
+        <!-- end of Dish DishCommentController-->
+
+
+    </div>

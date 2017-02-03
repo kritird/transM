@@ -1,0 +1,154 @@
+    <div class="container" ng-controller="AddTransformerController">
+   
+        <div class="row row-content">
+           <div class="col-xs-12">
+              <h3>Add New Transformer</h3>
+              <p>Note : Please keep the Controller Token once the Transformer is Added</p>
+           </div>
+
+            <div ng-show="registerSuccess" class="text-success"> 
+                Transformer Successfully Added
+                <div class="col-sm-10">
+                    <p class="text-info" style="word-wrap: break-word;">
+                        Controller Token : {{controllerToken}}
+                    </p>
+                </div>
+            </div>
+
+           <!-- Form Grid -->
+            <div class="col-xs-12 col-sm-9">
+                
+                <div ng-show="registerError" class="text-danger"> 
+                    Transformer Add Failed. Contact Admin
+                </div>
+
+                <!-- contact form -->
+                <form class="form-horizontal" role="form" name="registerForm" ng-submit="registerTransformer()" novalidate>
+                    
+                    <div class="form-group" ng-class="{ 'has-error' : registerForm.transformerId.$error.required && !registerForm.transformerId.$pristine }">
+                        <label for="transformerId" class="col-sm-2 control-label">TransformerId</label>
+                        <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="register.transformerId" required id="transformerId" name="transformerId" placeholder="Enter TransformerId (Should be unique)">
+                        <span ng-show="registerForm.transformerId.$error.required && !registerForm.transformerId.$pristine" class="help-block">TransformerId is required.</span>
+                        </div>
+                    </div>
+                                        
+                    <div class="form-group" ng-class="{ 'has-error' : registerForm.company.$error.required && !registerForm.company.$pristine }">
+                        <label for="company" class="col-sm-2 control-label">Company</label>
+                        <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="register.company" required id="company" name="company" placeholder="Enter Company Name">
+                        <span ng-show="registerForm.company.$error.required && !registerForm.company.$pristine" class="help-block">Company Name is required.</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-class="{ 'has-error' : registerForm.location.$error.required && !registerForm.location.$pristine }">
+                        <label for="location" class="col-sm-2 control-label">Location</label>
+                        <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="register.location" required id="location" name="location" placeholder="Enter Location">
+                        <span ng-show="registerForm.location.$error.required && !registerForm.location.$pristine" class="help-block">Location is required.</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-class="{ 'has-error' : registerForm.type.$error.required && !registerForm.type.$pristine }">
+                        <label for="type" class="col-sm-2 control-label">Type of Transformer</label>
+                        <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="register.type" required id="type" name="type" placeholder="Enter Type of Transformer">
+                        <span ng-show="registerForm.type.$error.required && !registerForm.type.$pristine" class="help-block">Type is required.</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subType" class="col-sm-2 control-label">Sub Type of Transformer</label>
+                        <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="register.subType" id="subType" name="subType" placeholder="Enter Sub Type of Transformer">
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-class="{ 'has-error' : registerForm.voltageRating.$error.required && !registerForm.voltageRating.$pristine }">
+                        <label for="voltageRating" class="col-sm-2 control-label">Voltage Rating </label>
+                        <div class="col-sm-10">
+                        <input type="number" class="form-control" ng-model="register.voltageRating" required id="voltageRating" name="voltageRating" placeholder="Voltage Rating in Volts">
+                        <span ng-show="registerForm.voltageRating.$error.required && !registerForm.voltageRating.$pristine" class="help-block">Voltage Rating is required.</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-class="{ 'has-error' : registerForm.overVoltageThreshold.$error.required && !registerForm.overVoltageThreshold.$pristine }">
+                        <label for="overVoltageThreshold" class="col-sm-2 control-label">Over Voltage Threshold</label>
+                        <div class="col-sm-10">
+                        <input type="number" class="form-control" ng-model="register.overVoltageThreshold" required id="overVoltageThreshold" name="overVoltageThreshold" placeholder="Over Voltage Threshold in Volts">
+                        <span ng-show="registerForm.overVoltageThreshold.$error.required && !registerForm.overVoltageThreshold.$pristine" class="help-block">Threshold is required.</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-class="{ 'has-error' : registerForm.underVoltageThreshold.$error.required && !registerForm.underVoltageThreshold.$pristine }">
+                        <label for="underVoltageThreshold" class="col-sm-2 control-label">Under Voltage Threshold</label>
+                        <div class="col-sm-10">
+                        <input type="number" class="form-control" ng-model="register.underVoltageThreshold" required id="underVoltageThreshold" name="underVoltageThreshold" placeholder="Under Voltage Threshold in Volts">
+                        <span ng-show="registerForm.underVoltageThreshold.$error.required && !registerForm.underVoltageThreshold.$pristine" class="help-block">Threshold is required.</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" ng-class="{ 'has-error' : registerForm.currentRating.$error.required && !registerForm.currentRating.$pristine }">
+                        <label for="currentRating" class="col-sm-2 control-label">Current Rating </label>
+                        <div class="col-sm-10">
+                        <input type="number" class="form-control" ng-model="register.currentRating" required id="currentRating" name="currentRating" placeholder="Current Rating in Amps">
+                        <span ng-show="registerForm.currentRating.$error.required && !registerForm.currentRating.$pristine" class="help-block">Current Rating is required.</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" ng-class="{ 'has-error' : registerForm.overLoadThreshold.$error.required && !registerForm.overLoadThreshold.$pristine }">
+                        <label for="overLoadThreshold" class="col-sm-2 control-label">Over Load Threshold</label>
+                        <div class="col-sm-10">
+                        <input type="number" class="form-control" ng-model="register.overLoadThreshold" required id="overLoadThreshold" name="overLoadThreshold" placeholder="Over Load Threshold in Amps">
+                        <span ng-show="registerForm.overLoadThreshold.$error.required && !registerForm.overLoadThreshold.$pristine" class="help-block">Threshold is required.</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-class="{ 'has-error' : registerForm.underLoadThreshold.$error.required && !registerForm.underLoadThreshold.$pristine }">
+                        <label for="underLoadThreshold" class="col-sm-2 control-label">Under Load Threshold</label>
+                        <div class="col-sm-10">
+                        <input type="number" class="form-control" ng-model="register.underLoadThreshold" required id="underLoadThreshold" name="underLoadThreshold" placeholder="Under Load Threshold in Amps">
+                        <span ng-show="registerForm.underLoadThreshold.$error.required && !registerForm.underLoadThreshold.$pristine" class="help-block">Threshold is required.</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subType" class="col-sm-2 control-label">Oil Temperature Threshold</label>
+                        <div class="col-sm-10">
+                        <input type="number" class="form-control" ng-model="register.oilTemperatureThreshold" id="oilTemperatureThreshold" name="oilTemperatureThreshold" placeholder="Oil Temperature Threshold in deg C">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subType" class="col-sm-2 control-label">Winding Temperature Threshold</label>
+                        <div class="col-sm-10">
+                        <input type="number" class="form-control" ng-model="register.windingTemperatureThreshold" id="windingTemperatureThreshold" name="windingTemperatureThreshold" placeholder="Winding Temperature Threshold in deg C">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subType" class="col-sm-2 control-label">Surface Temperature Threshold</label>
+                        <div class="col-sm-10">
+                        <input type="number" class="form-control" ng-model="register.surfaceTemperatureThreshold" id="surfaceTemperatureThreshold" name="surfaceTemperatureThreshold" placeholder="Surface Temperature Threshold in deg C">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description" class="col-sm-2 control-label">Description</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" ng-model="register.description" id="description" name="description" rows="12"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" ng-disabled="registerForm.$invalid" class="btn btn-primary">Register</button>
+                        </div>
+                    </div>
+                </form>
+                <!-- End Form -->
+
+
+            </div>
+       </div>
+</div>

@@ -1,0 +1,21 @@
+    <div class="container" ng-controller="UserController">
+        
+     <div class="row-container" style="padding-top: 100px; padding-bottom:300px;">    
+          <form class="form-signin" ng-submit="reset()">
+            <h3 class="form-signin-heading">Change Password</h3>
+            <label for="userName" class="sr-only">Username</label>
+            <input type="text" class="form-control" placeholder="Username" ng-model="username" required autofocus>
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" class="form-control" placeholder="Password" ng-model="password" required>
+            <label for="inputPassword" class="sr-only">New Password</label>
+            <input type="password" class="form-control" placeholder="New Password" ng-model="newPassword" required>
+            <label for="inputPassword" class="sr-only">Confirm Password</label>
+            <input type="password" class="form-control" placeholder="Re-type Password" ng-model="confirmPassword" required>
+
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+            <div ng-if="errorMessage" class="text-danger"> Invalid Username or Password </div>
+            <div ng-if="newPassError" class="text-danger"> Re-Typed Password doesn't match. Retry </div>
+
+          </form>
+    </div>
+    </div> <!-- /container -->

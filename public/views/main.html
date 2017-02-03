@@ -1,0 +1,80 @@
+    <div class="container" ng-controller="MainController">
+   
+        <div class="row row-content">
+           <div class="col-xs-12 well well-lg bg-primary">
+              <h5>Welcome &nbsp; {{user.company}}, </h5>
+              <p>Browse and Manage your Transformers</p>   
+           </div>
+           <div class="col-xs-12 well well-lg" ng-show = "user.admin">    
+               <h6>Admin Menu</h6>                
+
+               <div class="col-xs-12" style="padding-bottom: 10px;">
+
+                   <div class="col-xs-12 col-sm-4">
+                       <a class="btn btn-lg btn-primary" style="width:80%;" ui-sref="app.addtransformer" role="button">Register Transformer</a>
+                   </div>
+                   
+                   <div class="col-xs-12 col-sm-4">
+                       <a class="btn btn-lg btn-primary" style="width:80%;" ui-sref="app.adduser" role="button">Register User</a>
+                   </div>
+
+                   <div class="col-xs-12 col-sm-4">
+                       <a class="btn btn-lg btn-warning" style="width:80%;" ui-sref="app.linkuser" role="button">Link Transformer to User</a>
+                   </div>
+
+                </div>            
+
+               <div class="col-xs-12" style="padding-bottom: 10px;">
+
+                   <div class="col-xs-12 col-sm-4">
+                       <a class="btn btn-lg btn-danger" style="width:80%;" ui-sref="app.removetransformer" role="button">Remove Transformer</a>
+                   </div>
+                   
+                   <div class="col-xs-12 col-sm-4">
+                       <a class="btn btn-lg btn-danger" style="width:80%;" ui-sref="app.removeuser" role="button">Remove User</a>
+                   </div>
+
+                   <div class="col-xs-12 col-sm-4">
+                       <a class="btn btn-lg btn-danger" style="width:80%;" ui-sref="app.unlinkuser" role="button">Unlink Transformer from User</a>
+                   </div>
+
+               </div>
+            </div>
+        
+            <div class="col-xs-12" style="padding-bottom: 10px;">
+                <h5>Registered Transformers</h5>
+            </div>
+            
+            <div class="col-xs-12" ng-show="!showTransformer">
+                <div class="alert alert-danger" role="alert">
+                    There is no Transformer Registered! Contact Admin.
+                </div>
+            </div>
+            
+            <div class="col-xs-12" ng-show="showTransformer">
+                <ul class="media-list">
+                   <li class="media" ng-repeat="transformer in transformers">
+                       <div class="media-left media-middle">
+                           <a ui-sref="app.dashboard({transformerId: transformer.transformerId})">
+                           <img class="media-object img-thumbnail" height=80 width=auto
+                            src="images/logo.png" alt="Transformer Image">
+                           </a>
+                       </div>
+                       <div class="media-body">
+                           <h6>Transformer ID : {{transformer.transformerId}}</h6>
+                           <p ng-class="{'text-danger' : transformer.health === 'CRITICAL', 'text-success' : transformer.health === 'GOOD'}">
+                               Health : {{transformer.health}}  |  Status :  {{transformer.status}}
+                           </p>
+                           <p>Type : {{transformer.type}}  |  Sub-Type :  {{transformer.subType}}
+                           </p>
+                           <p>Voltage Rating : {{transformer.voltageRating}}  |  Current Rating :  {{transformer.currentRating}}
+                           </p>
+                           <p>Location : {{transformer.location}}</p>
+                       </div>
+                   </li>
+                </ul>
+            </div>
+
+        </div>
+        
+    </div>

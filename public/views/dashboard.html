@@ -1,0 +1,159 @@
+    <div class="container" ng-controller="DashboardController" ng-cloak>
+   
+        <div class="col-xs-12" style="margin-top:300px; margin-bottom:300px;" ng-show="!showTransformer">
+            <div class="alert alert-danger" role="alert">
+                There is no Transformer Registered! Contact Admin.
+            </div>
+        </div>
+        
+        <div class="row row-content" ng-show="showTransformer">
+           <div class="col-xs-12 well well-lg">
+              <h5> Transformer ID : {{transformer.transformerId}} </h5>
+               <p>Company : {{transformer.company}}   | Location : {{transformer.location}}</p>
+               <p style="padding:20px;"></p>
+
+               <p ng-class="{'text-danger': transformer.health === 'CRITICAL'}">
+                   Health : {{transformer.health}}  |  Status :  {{transformer.status}}
+               </p>
+               
+               <p>Type : {{transformer.type}}  |  Sub-Type :  {{transformer.subType}}
+               </p>
+               <p>Voltage Rating : {{transformer.voltageRating}}  |  Current Rating :  {{transformer.currentRating}}
+               </p>
+               <p style="padding-top: 5px;">{{transformer.description}}</p>
+           </div>                  
+        </div>
+        
+        <div class="row row-content">
+            
+            <div class="col-xs-12" ng-show='!showData'>
+                <div class="alert alert-danger" role="alert">
+                    There is no Transformer Data available.
+                </div>
+            </div>
+            
+            <div class="col-xs-12" ng-show="showData">
+                
+                <!-- Voltages -->
+                <div class="col-xs-12">
+                  <h6>Voltage </h6>
+                  <p>Over Voltage Threshold : {{transformer.overVoltageThreshold}} Volts &nbsp;&nbsp; | &nbsp;&nbsp;
+                  Under Voltage Threshold : {{transformer.underVoltageThreshold}} Volts</p>
+                    
+                  <div class="col-xs-12 col-sm-3 box" style="border: 4px solid #E74C3C;">
+                      <div class="col-xs-6 valueBox text-center" style="background-color: #E74C3C;">
+                          <p style="margin-top:30%;">Voltage (R) </p>
+                      </div>
+                      <div class="col-xs-6" style="padding-right:0px;">
+                            <p class="digitalFont">{{tData[0].voltageVr}} V</p>
+                      </div>
+                  </div>
+
+                  <div class="col-xs-12 col-sm-3 box" style="border: 4px solid #F1C40F;">
+                      <div class="col-xs-6 valueBox text-center" style="background-color: #F1C40F;">
+                          <p style="margin-top:30%;">Voltage (Y) </p>
+                      </div>
+                      <div class="col-xs-6" style="padding-right:0px;">
+                            <p class="digitalFont">{{tData[0].voltageVy}} V</p>
+                      </div>
+                  </div>
+
+                  <div class="col-xs-12 col-sm-3 box" style="border: 4px solid #2980B9;">
+                      <div class="col-xs-6 valueBox text-center" style="background-color: #2980B9;">
+                          <p style="margin-top:30%;">Voltage (B) </p>
+                      </div>
+                      <div class="col-xs-6" style="padding-right:0px;">
+                            <p class="digitalFont">{{tData[0].voltageVb}} V</p>
+                      </div>
+                  </div>
+                </div>
+                <!-- Voltages End -->
+
+                <!-- Currents -->
+                <div class="col-xs-12" style="padding-top:30px;">
+                  <h6>Currents </h6>
+                  <p>Over Load Threshold : {{transformer.overLoadThreshold}} Amps &nbsp;&nbsp; |
+                   &nbsp;&nbsp; Under Load Threshold : {{transformer.underLoadThreshold}} Amps</p>
+                    
+                  <div class="col-xs-12 col-sm-3 box" style="border: 4px solid #E74C3C;">
+                      <div class="col-xs-6 valueBox text-center" style="background-color: #E74C3C;">
+                          <p style="margin-top:30%;">Current (R) </p>
+                      </div>
+                      <div class="col-xs-6" style="padding-right:0px;">
+                            <p class="digitalFont">{{tData[0].currentIr}} A</p>
+                      </div>
+                  </div>
+
+                  <div class="col-xs-12 col-sm-3 box" style="border: 4px solid #F1C40F;">
+                      <div class="col-xs-6 valueBox text-center" style="background-color: #F1C40F;">
+                          <p style="margin-top:30%;">Current (Y) </p>
+                      </div>
+                      <div class="col-xs-6" style="padding-right:0px;">
+                            <p class="digitalFont">{{tData[0].currentIy}} A</p>
+                      </div>
+                  </div>
+
+                  <div class="col-xs-12 col-sm-3 box" style="border: 4px solid #2980B9;">
+                      <div class="col-xs-6 valueBox text-center" style="background-color: #2980B9;">
+                          <p style="margin-top:30%;">Current (B) </p>
+                      </div>
+                      <div class="col-xs-6" style="padding-right:0px;">
+                            <p class="digitalFont">{{tData[0].currentIb}} A</p>
+                      </div>
+                  </div>
+                </div>
+                <!-- Currents End -->
+
+                <!-- Temperature  -->
+                <div class="col-xs-12" style="padding-top:30px;">
+                  <h6>Temperatures </h6>
+                  <p>Oil Threshold : {{transformer.oilTemperatureThreshold}} deg C &nbsp;&nbsp; | &nbsp;&nbsp; Winding Threshold : {{transformer.windingTemperatureThreshold}} deg C &nbsp;&nbsp; | 
+                  &nbsp;&nbsp; Surface Threshold : {{transformer.surfaceTemperatureThreshold}} deg C</p>
+                    
+                  <div class="col-xs-12 col-sm-3 box" style="border: 4px solid #E67E22;">
+                      <div class="col-xs-6 valueBox text-center" style="background-color: #E67E22;">
+                          <p style="margin-top:30%;">Oil </p>
+                      </div>
+                      <div class="col-xs-6" style="padding-right:0px;">
+                            <p class="digitalFont">{{tData[0].oilTemperature}} C</p>
+                      </div>
+                  </div>
+
+                  <div class="col-xs-12 col-sm-3 box" style="border: 4px solid #F1C40F;">
+                      <div class="col-xs-6 valueBox text-center" style="background-color: #F1C40F;">
+                          <p style="margin-top:30%;">Winding </p>
+                      </div>
+                      <div class="col-xs-6" style="padding-right:0px;">
+                            <p class="digitalFont">{{tData[0].windingTemperature}} C</p>
+                      </div>
+                  </div>
+
+                  <div class="col-xs-12 col-sm-3 box" style="border: 4px solid #F39C12;">
+                      <div class="col-xs-6 valueBox text-center" style="background-color: #F39C12;">
+                          <p style="margin-top:30%;">Surface </p>
+                      </div>
+                      <div class="col-xs-6" style="padding-right:0px;">
+                            <p class="digitalFont">{{tData[0].surfaceTemperature}} C</p>
+                      </div>
+                  </div>
+                </div>
+                <!-- Temperature End -->
+
+            </div>
+        </div>
+                
+        <div class="row row-content">
+            <div class="col-xs-12" ng-controller="VoltageController">
+                <div ng-show="showVGraph">
+                    <nvd3 options="options" data="data" class="with-3d-shadow with-transitions"></nvd3>
+                </div>
+            </div>
+            
+            <div class="col-xs-12" ng-controller="CurrentController">
+                <div ng-show="showIGraph">
+                    <nvd3 options="options" data="data" class="with-3d-shadow with-transitions"></nvd3>
+                </div>
+            </div>
+
+        </div>
+    </div>

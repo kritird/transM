@@ -1,0 +1,23 @@
+    <div class="container" ng-controller="LinkUserController">
+        
+     <div class="row-container" style="padding-top: 100px; padding-bottom:300px;">
+          <form class="form-signin" ng-submit="linkUser()">
+              
+            <h5 class="form-signin-heading">Link User to Transformer</h5>
+              
+            <div ng-if="linkSuccess" class="text-success">Username is linked to Transformer Successfully </div>
+
+            <label for="userName" class="sr-only">Username</label>
+            <input type="text" class="form-control" placeholder="Username" ng-model="username" required autofocus>
+              
+            <label for="transformerId" class="sr-only">Transformer ID</label>
+            <input type="text" class="form-control" placeholder="Transformer ID" ng-model="transformerId" required>
+              
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Link</button>
+            <div ng-if="linkError" class="text-danger"> Invalid Username or TransformerID. Contact Admin </div>
+            <div ng-if="alreadyLinked" class="text-danger"> Username already linked to Transformer</div>
+
+          </form>
+    </div>
+    </div> <!-- /container -->
+

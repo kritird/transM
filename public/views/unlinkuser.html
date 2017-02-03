@@ -1,0 +1,23 @@
+    <div class="container" ng-controller="UnlinkUserController">
+        
+     <div class="row-container" style="padding-top: 100px; padding-bottom:300px;">
+          <form class="form-signin" ng-submit="unlinkUser()">
+              
+            <h5 class="form-signin-heading">Unlink Transformer from User</h5>
+              
+            <div ng-if="unlinkSuccess" class="text-success">Transformer is unlinked from User Successfully </div>
+
+            <label for="userName" class="sr-only">Username</label>
+            <input type="text" class="form-control" placeholder="Username" ng-model="username" required autofocus>
+              
+            <label for="transformerId" class="sr-only">Transformer ID</label>
+            <input type="text" class="form-control" placeholder="Transformer ID" ng-model="transformerId" required>
+              
+            <button class="btn btn-lg btn-danger btn-block" type="submit">Unlink</button>
+            <div ng-if="unlinkError" class="text-danger"> Invalid Username or TransformerID. Contact Admin </div>
+            <div ng-if="notLinked" class="text-danger"> Transformer is not linked to User</div>
+
+          </form>
+    </div>
+    </div> <!-- /container -->
+

@@ -1,0 +1,19 @@
+    <div class="container" ng-controller="RemoveTransformerController">
+        
+     <div class="row-container" style="padding-top: 100px; padding-bottom:300px;">
+          <form class="form-signin" ng-submit="removeTransformer()">
+              
+            <h5 class="form-signin-heading">Remove Transformer</h5>
+              
+            <div ng-if="success" class="text-success">Transformer is removed Successfully </div>
+              
+            <label for="transformerId" class="sr-only">Transformer ID</label>
+            <input type="text" class="form-control" placeholder="Transformer ID" ng-model="transformerId" required>
+              
+            <button class="btn btn-lg btn-danger btn-block" type="submit">Remove</button>
+            <div ng-if="error" class="text-danger"> Invalid TransformerID. Contact Admin </div>
+              
+          </form>
+    </div>
+    </div> <!-- /container -->
+
